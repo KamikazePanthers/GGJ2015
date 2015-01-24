@@ -1,4 +1,5 @@
-# Game Jam Cordoba 2015 - Kamikaze Panther
+# Global Game Jam Cordoba 2015
+## Kamikaze Panther
 
 ## Installing
 
