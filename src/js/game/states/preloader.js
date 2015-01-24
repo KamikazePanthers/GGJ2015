@@ -14,6 +14,7 @@ module.exports = function(game) {
     game.load.image('tiles', 'images/tiles.png');
 
     game.load.image('player', 'images/player.png');
+    game.load.spritesheet('coin', 'images/coin.png', 64, 64);
   };
 
   preloader.create = function () {

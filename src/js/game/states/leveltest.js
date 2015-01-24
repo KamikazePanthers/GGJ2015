@@ -17,6 +17,14 @@ module.exports = function(game) {
 
     backgroundlayer.resizeWorld();
 
+    coins = game.add.group();
+    coins.enableBody = true;
+
+    map.createFromObjects('objectLayer', 2, 'coin', 0, true, false, coins);
+
+    coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
+    coins.callAll('animations.play', 'animations', 'spin');
+
     p = game.add.sprite(0, 192, 'player');
     game.physics.enable(p);
     game.physics.arcade.gravity.y = 250;
@@ -29,7 +37,10 @@ module.exports = function(game) {
 
   levelState.update = function () {
 
+    game.physics.arcade.collide(coins, blockedLayer);
     game.physics.arcade.collide(p, blockedLayer);
+    game.physics.arcade.overlap(p, coins, collectCoin, null, this);
+
 
     p.body.velocity.x = 0;
     if (cursors.up.isDown)
@@ -48,6 +59,10 @@ module.exports = function(game) {
     {
         p.body.velocity.x = 150;
     }
+  }
+
+  function collectCoin(player, coin){
+    coin.kill();
   }
 
   return levelState;
