@@ -176,6 +176,11 @@ module.exports = function (grunt) {
           [ { expand: true, cwd: 'src/audio/', src: ['**'], dest: 'build/audio/' }
           ]
         }
+      , maps:
+        { files:
+          [ { expand: true, cwd: 'src/maps/', src: ['**'], dest: 'build/maps/' }
+          ]
+        }
       }
 
     , uglify:
