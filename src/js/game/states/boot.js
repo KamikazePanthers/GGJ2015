@@ -20,6 +20,7 @@ module.exports = function(game) {
     game.state.start('preloader');
   };
 
+  // This Method call the FPS debuger
   function addStats() {
     var stats = new Stats();
 
