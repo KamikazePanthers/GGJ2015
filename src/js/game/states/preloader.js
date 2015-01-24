@@ -17,7 +17,11 @@ module.exports = function(game) {
     game.load.image('tiles_lvl1', 'images/tileset.png');
 
     game.load.image('player', 'images/player.png');
-    game.load.spritesheet('coin', 'images/coin.png', 64, 64);
+	game.load.spritesheet('coin', 'images/coin.png', 64, 64);
+
+    // Enemies
+    game.load.image('enemypatrol', 'images/patrol.png#grunt-cache-bust');
+
   };
 
   preloader.create = function () {
