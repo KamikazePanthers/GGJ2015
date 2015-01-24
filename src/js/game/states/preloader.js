@@ -14,6 +14,10 @@ module.exports = function(game) {
     game.load.image('tiles', 'images/tiles.png');
 
     game.load.image('player', 'images/player.png');
+
+    // Enemies
+    game.load.image('enemypatrol', 'images/patrol.png#grunt-cache-bust');
+
   };
 
   preloader.create = function () {
