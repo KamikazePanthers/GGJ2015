@@ -27,7 +27,7 @@ module.exports = function(game) {
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
-    p = game.add.sprite(0, 192, 'player');
+    p = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
     game.physics.enable(p);
     p.body.bounce.y = 0.2;
     p.body.linearDamping = 1;
