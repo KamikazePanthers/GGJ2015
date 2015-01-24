@@ -9,6 +9,9 @@ module.exports = function(game) {
 
     // Here we need to add all the media
     game.load.image('logo', 'images/phaser.png#grunt-cache-bust');
+    game.load.image('coin', 'images/coin.png#grunt-cache-bust');
+    game.load.image('dummyplayer', 'images/dummyplayer.png#grunt-cache-bust');
+
   };
 
   preloader.create = function () {
