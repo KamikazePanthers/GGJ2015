@@ -1,18 +1,19 @@
 module.exports = function(game) {
 
-  console.log("Init Preloader");
   var preloader = {};
 
   preloader.preload = function () {
-    console.log("Preoload Preloader");
+    var text = "Loading files...";
+    var style = { font: "30px Arial", fill: "#FFF", align: "center" };
+    var loading = game.add.text(game.world.centerX-100, game.world.centerY+200, text, style);
+
+    // Here we need to add all the media
     game.load.image('logo', 'images/phaser.png#grunt-cache-bust');
   };
 
   preloader.create = function () {
-    console.log("Create Preloader");
     game.state.start('game');
   };
 
-  console.log("End Preloader");
   return preloader;
 };
