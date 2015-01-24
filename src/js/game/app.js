@@ -13,4 +13,5 @@ _.each(states, function(state, key) {
   game.state.add(key, state(game));
 });
 
+
 game.state.start('boot');
