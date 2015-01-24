@@ -1,4 +1,4 @@
-{"height":8,
+{ "height":8,
  "layers":[
         {
          "data":[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
@@ -6,7 +6,7 @@
          "name":"backgroundLayer",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":15,
          "x":0,
          "y":0
@@ -27,21 +27,6 @@
          "name":"objectLayer",
          "objects":[
                 {
-                 "gid":2,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "sprite":"red",
-                     "type":"item"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":507,
-                 "y":252
-                }, 
-                {
                  "gid":1,
                  "height":0,
                  "name":"",
@@ -61,14 +46,41 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"red",
-                     "type":"item"
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":128,
+                 "y":128
+                }, 
+                {
+                 "gid":2,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":512,
+                 "y":192
+                }, 
+                {
+                 "gid":2,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":832,
-                 "y":123
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -86,7 +98,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"tiles.png",
+         "image":"..\/..\/..\/..\/Desktop\/maps\/tiles.png",
          "imageheight":64,
          "imagewidth":256,
          "margin":0,

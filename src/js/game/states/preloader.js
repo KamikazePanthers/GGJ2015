@@ -13,7 +13,11 @@ module.exports = function(game) {
     game.load.tilemap('tile_map', 'maps/test_map.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles', 'images/tiles.png');
 
+    game.load.tilemap('level1', 'maps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('tiles_lvl1', 'images/tileset.png');
+
     game.load.image('player', 'images/player.png');
+	game.load.spritesheet('coin', 'images/coin.png', 64, 64);
 
     // Enemies
     game.load.image('enemypatrol', 'images/patrol.png#grunt-cache-bust');

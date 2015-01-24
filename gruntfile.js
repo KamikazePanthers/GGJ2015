@@ -86,6 +86,10 @@ module.exports = function (grunt) {
         { files: 'src/audio/**/*'
         , tasks: ['copy:audio']
         }
+      , maps:
+        { files: 'src/maps/**/*'
+        , tasks: ['copy:maps']
+        }
       }
 
     , browserify:
