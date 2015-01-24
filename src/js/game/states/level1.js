@@ -1,26 +1,27 @@
 module.exports = function(game) {
 
-  var levelState = {};
+  var level1 = {};
 
-  levelState.create = function () {
-    var text = "Level Test";
+  level1.create = function () {
+    var text = "Level 1";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
-    var loading = game.add.text(game.world.centerX-100, game.world.centerY+200, text, style);
+    var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
     game.physics.arcade.gravity.y = 250;
 
-    map = game.add.tilemap('tile_map');
-    map.addTilesetImage('tiles', 'tiles');
+    map = game.add.tilemap('level1');
+    map.addTilesetImage('tileset', 'tiles_lvl1');
 
-    backgroundlayer = map.createLayer('backgroundLayer');
+    backgroundlayer0 = map.createLayer('backgroundLayer0');
+    backgroundlayer1 = map.createLayer('backgroundLayer1');
     blockedLayer = map.createLayer('blockedLayer');
 
-    map.setCollisionBetween(3, 10, true, 'blockedLayer');
+    map.setCollisionBetween(0, 20, true, 'blockedLayer');
 
-    backgroundlayer.resizeWorld();
+    backgroundlayer0.resizeWorld();
 
     coins = game.add.group();
     coins.enableBody = true;
-    map.createFromObjects('objectLayer', 2, 'coin', 0, true, false, coins);
+    map.createFromObjects('objectLayer', 61, 'coin', 0, true, false, coins);
 
     coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
     coins.callAll('animations.play', 'animations', 'spin');
@@ -33,14 +34,11 @@ module.exports = function(game) {
     p.body.collideWorldBounds = true;
 
     cursors = game.input.keyboard.createCursorKeys();
+    game.camera.follow(p);
   };
 
-  levelState.update = function () {
-
-    game.physics.arcade.collide(coins, blockedLayer);
+  level1.update = function () {
     game.physics.arcade.collide(p, blockedLayer);
-    game.physics.arcade.overlap(p, coins, collectCoin, null, this);
-
 
     p.body.velocity.x = 0;
     if (cursors.up.isDown)
@@ -61,9 +59,5 @@ module.exports = function(game) {
     }
   }
 
-  function collectCoin(player, coin){
-    coin.kill();
-  }
-
-  return levelState;
+  return level1;
 };

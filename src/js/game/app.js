@@ -6,7 +6,8 @@ var Phaser = require('Phaser'),
         preloader: require('./states/preloader.js'),
         game: require('./states/game.js'),
 
-        leveltest: require('./states/leveltest.js')
+        leveltest: require('./states/leveltest.js'),
+        level1: require('./states/level1.js')
     },
     game = new Phaser.Game(properties.size.x, properties.size.y, Phaser.AUTO, 'game');
 
