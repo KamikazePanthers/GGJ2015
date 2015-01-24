@@ -1,21 +1,21 @@
 module.exports = function(game) {
 
-  var level1 = {};
+  var level3 = {};
 
-  level1.create = function () {
-    var text = "Level 1";
+  level3.create = function () {
+    var text = "Level 3";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
     var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
     game.physics.arcade.gravity.y = 250;
 
-    map = game.add.tilemap('level1');
+    map = game.add.tilemap('level3');
     map.addTilesetImage('tileset', 'tiles_png');
 
     backgroundlayer0 = map.createLayer('backgroundLayer0');
     backgroundlayer1 = map.createLayer('backgroundLayer1');
     blockedLayer = map.createLayer('blockedLayer');
 
-    map.setCollisionBetween(0, 20, true, 'blockedLayer');
+    map.setCollisionBetween(0, 90, true, 'blockedLayer');
 
     backgroundlayer0.resizeWorld();
 
@@ -27,7 +27,7 @@ module.exports = function(game) {
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
-    p = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
+    p = game.add.sprite(0, game.world.height - 256, 'player'); // <--- mas negrada
     game.physics.enable(p);
     p.body.bounce.y = 0.2;
     p.body.linearDamping = 1;
@@ -37,7 +37,7 @@ module.exports = function(game) {
     game.camera.follow(p);
   };
 
-  level1.update = function () {
+  level3.update = function () {
     game.physics.arcade.collide(p, blockedLayer);
 
     p.body.velocity.x = 0;
@@ -59,5 +59,5 @@ module.exports = function(game) {
     }
   }
 
-  return level1;
+  return level3;
 };

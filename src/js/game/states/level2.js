@@ -1,14 +1,14 @@
 module.exports = function(game) {
 
-  var level1 = {};
+  var level2 = {};
 
-  level1.create = function () {
-    var text = "Level 1";
+  level2.create = function () {
+    var text = "Level 2";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
     var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
     game.physics.arcade.gravity.y = 250;
 
-    map = game.add.tilemap('level1');
+    map = game.add.tilemap('level2');
     map.addTilesetImage('tileset', 'tiles_png');
 
     backgroundlayer0 = map.createLayer('backgroundLayer0');
@@ -37,7 +37,7 @@ module.exports = function(game) {
     game.camera.follow(p);
   };
 
-  level1.update = function () {
+  level2.update = function () {
     game.physics.arcade.collide(p, blockedLayer);
 
     p.body.velocity.x = 0;
@@ -59,5 +59,5 @@ module.exports = function(game) {
     }
   }
 
-  return level1;
+  return level2;
 };
