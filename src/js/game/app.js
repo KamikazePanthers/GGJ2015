@@ -12,7 +12,7 @@ var Phaser = require('Phaser'),
         level3: require('./states/level3.js'),
         //level4: require('./states/level4.js'),
     },
-    game = new Phaser.Game(properties.size.x, properties.size.y, Phaser.AUTO, 'game');
+    game = new Phaser.Game(properties.size.x, properties.size.y, Phaser.CANVAS, 'game');
 
 // Automatically register each state.
 _.each(states, function(state, key) {
