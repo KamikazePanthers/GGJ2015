@@ -8,7 +8,7 @@ var Phaser = require('Phaser'),
 
         leveltest: require('./states/leveltest.js'),
         level1: require('./states/level1.js'),
-        // level2: require('./states/level2.js'),
+        level2: require('./states/level2.js'),
         level3: require('./states/level3.js'),
         //level4: require('./states/level4.js'),
     },

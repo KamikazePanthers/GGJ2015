@@ -1,3 +1,6 @@
+var Countdown = require('../modules/timer')
+var Player = require('../modules/player')
+
 module.exports = function(game) {
 
   var level2 = {};
@@ -6,7 +9,7 @@ module.exports = function(game) {
     var text = "Level 2";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
     var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
-    game.physics.arcade.gravity.y = 250;
+    game.physics.arcade.gravity.y = 400;
 
     map = game.add.tilemap('level2');
     map.addTilesetImage('tileset', 'tiles_png');
@@ -15,48 +18,57 @@ module.exports = function(game) {
     backgroundlayer1 = map.createLayer('backgroundLayer1');
     blockedLayer = map.createLayer('blockedLayer');
 
-    map.setCollisionBetween(0, 20, true, 'blockedLayer');
+    map.setCollisionBetween(0, 120, true, 'blockedLayer');
 
     backgroundlayer0.resizeWorld();
 
+    // Coins
     coins = game.add.group();
     coins.enableBody = true;
     map.createFromObjects('objectLayer', 61, 'coin', 0, true, false, coins);
+
+    coins_count = coins.children.length;
 
     coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
-    p = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
-    game.physics.enable(p);
-    p.body.bounce.y = 0.2;
-    p.body.linearDamping = 1;
-    p.body.collideWorldBounds = true;
+    // Door callback
+    door = game.add.sprite(256, 0, 'door');
+    game.physics.enable(door);
+    door.body.allowGravity = false;
+    door.body.setSize(96, 128, 0, 192);
+
+    // Player
+    player = new Player(game, 128, game.height - 32)
+    game.add.existing(player);
 
     cursors = game.input.keyboard.createCursorKeys();
-    game.camera.follow(p);
+    game.camera.follow(player);
+
+    timer = new Countdown(game);
+    game.add.existing(timer);
   };
 
   level2.update = function () {
-    game.physics.arcade.collide(p, blockedLayer);
+    game.physics.arcade.collide(player, blockedLayer);
+    game.physics.arcade.overlap(player, coins, this.collect, null, this);
+    game.physics.arcade.overlap(player, door, this.doorCallback, null, this);
+  }
 
-    p.body.velocity.x = 0;
-    if (cursors.up.isDown)
-    {
-        if (p.body.onFloor())
-        {
-            p.body.velocity.y = -300;
-        }
-    }
+  level2.render = function(){
+    game.debug.body(player);
+    game.debug.body(door);
+  }
 
-    if (cursors.left.isDown)
-    {
-        p.body.velocity.x = -150;
-    }
-    else if (cursors.right.isDown)
-    {
-        p.body.velocity.x = 150;
-    }
+  level2.collect = function(player, coin){
+    coin.kill();
+    coins_count--;
+    //legend.setText(coins_count);
+  }
+
+  level2.doorCallback = function(player, door){
+    level = game.state.start('level3');
   }
 
   return level2;
