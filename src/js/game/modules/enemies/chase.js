@@ -1,28 +1,29 @@
-'use strict';
 
-var Enemy = function(game, player, bullets) {
-    Phaser.Sprite.call(this, game, x, y, 'bird', frame);
-
+var EnemyChase = function(game, x, y, player, speed, delay) {
     this.game = game;
     this.player = player;
-    this.bullets = bullets;
+    this.speed = typeof speed !== 'undefined' ?  speed : 120;
+    this.delay = typeof delay !== 'undefined' ?  delay : 500;
 
-  // initialize your prefab here
+    Phaser.Sprite.call(this, game, x, y, 'enemychase');
+    game.physics.arcade.enable([ this ], Phaser.Physics.ARCADE);
+    game.physics.arcade.gravity.y = 100;
 
-};
+    this.body.bounce.y = 0.1;
+    this.body.gravity.y = 100;
 
-Enemy.prototype = Object.create(Phaser.Sprite.prototype);
-Enemy.prototype.constructor = Enemy;
-
-Enemy.prototype.update = function() {
-
-    if (!this.alive) return;
-    this.body.velocity.y = -1;
+    game.time.events.loop(this.delay, this.chase, this);
 
 };
 
-Enemy.prototype.chase = function() {
-    this.game.physics.arcade.moveToObject(this, this.player, 500);
+EnemyChase.prototype = Object.create(Phaser.Sprite.prototype);
+EnemyChase.prototype.constructor = EnemyChase;
+
+EnemyChase.prototype.update = function() {
+};
+
+EnemyChase.prototype.chase = function() {
+    this.game.physics.arcade.moveToObject(this, this.player, this.speed);
 }
 
-module.exports = Enemy;
+module.exports = EnemyChase;
