@@ -19,7 +19,6 @@ module.exports = function(game) {
     blockedLayer = map.createLayer('blockedLayer');
 
     map.setCollisionBetween(0, 120, true, 'blockedLayer');
-
     backgroundlayer0.resizeWorld();
 
     // Coins
@@ -40,35 +39,42 @@ module.exports = function(game) {
     door.body.setSize(96, 128, 0, 192);
 
     // Player
-    player = new Player(game, 128, game.height - 32)
-    game.add.existing(player);
+    this.player = null;
+    this.player = new Player(game, 120, 500);
+    game.add.existing(this.player);
+    game.camera.follow(this.player);
 
-    timer = new Countdown(game, 15);
+    timer = new Countdown(game, 60);
     game.add.existing(timer);
-
-    game.camera.follow(player);
   };
 
   level2.update = function () {
-    game.physics.arcade.collide(player, blockedLayer);
-    game.physics.arcade.overlap(player, coins, this.collect, null, this);
-    game.physics.arcade.overlap(player, door, this.doorCallback, null, this);
-  }
+    game.physics.arcade.collide(this.player, blockedLayer);
+    game.physics.arcade.overlap(this.player, coins, this.collect, null, this);
+    game.physics.arcade.overlap(this.player, door, this.doorCallback, null, this);
 
-  level2.render = function(){
-    game.debug.body(player);
-    game.debug.body(door);
-  }
+    // #AhListoQueVillero
+    if ( this.player.body.y == 640 ) {
+        this.gameOver();
+    }
+    if (timer.timeOver) {
+        this.gameOver();
+    }
+  };
 
   level2.collect = function(player, coin){
     coin.kill();
     coins_count--;
     //legend.setText(coins_count);
-  }
+  };
 
-  level2.doorCallback = function(player, door){
-    level = game.state.start('level3');
-  }
+  level2.doorCallback = function(){
+    game.state.start('level3');
+  };
+
+  level2.gameOver = function(){
+    game.state.start('gameover');
+  };
 
   return level2;
 };
