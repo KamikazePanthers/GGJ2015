@@ -33,7 +33,7 @@ module.exports = function(game) {
     player = new Player(game, 0, game.world.height - 192)
     game.add.existing(player);
 
-    var text = "Level 1";
+    var text = coins_count;
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
     legend = new Phaser.Text(game, 0, 0, text, style);
     legend.x = game.width - legend.width - 10;
