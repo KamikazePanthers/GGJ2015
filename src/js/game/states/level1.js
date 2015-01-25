@@ -1,4 +1,4 @@
-var Countdown = require('../modules/timer')
+var ItemCounter = require('../modules/counter')
 var Player = require('../modules/player')
 
 module.exports = function(game) {
@@ -30,28 +30,16 @@ module.exports = function(game) {
 
     coins_count = coins.children.length;
 
+    counter = new ItemCounter(game, coins_count);
+    game.add.existing(counter);
+
     player = new Player(game, 0, game.world.height - 192)
     game.add.existing(player);
-
-    var text = coins_count;
-    var style = { font: "30px Arial", fill: "#FFF", align: "center" };
-    legend = new Phaser.Text(game, 0, 0, text, style);
-    legend.x = game.width - legend.width - 10;
-    legend.y = game.height - legend.height - 10;
-    legend.fixedToCamera = true;
-    game.add.existing(legend);
-
-    timer = new Countdown(game);
-    game.add.existing(timer);
 
     game.camera.follow(player);
   };
 
   level1.update = function () {
-
-    if (timer.timeOver) {
-        level = game.state.start('game');
-    }
 
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, coins, this.collect, null, this);
