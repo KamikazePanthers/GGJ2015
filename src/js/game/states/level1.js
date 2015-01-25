@@ -41,11 +41,10 @@ module.exports = function(game) {
     legend.fixedToCamera = true;
     game.add.existing(legend);
 
-    cursors = game.input.keyboard.createCursorKeys();
-    game.camera.follow(player);
-
     timer = new Countdown(game);
     game.add.existing(timer);
+
+    game.camera.follow(player);
   };
 
   level1.update = function () {

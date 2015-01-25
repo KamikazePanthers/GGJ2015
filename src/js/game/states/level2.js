@@ -43,11 +43,10 @@ module.exports = function(game) {
     player = new Player(game, 128, game.height - 32)
     game.add.existing(player);
 
-    cursors = game.input.keyboard.createCursorKeys();
-    game.camera.follow(player);
-
-    timer = new Countdown(game);
+    timer = new Countdown(game, 15);
     game.add.existing(timer);
+
+    game.camera.follow(player);
   };
 
   level2.update = function () {

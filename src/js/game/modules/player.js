@@ -10,6 +10,8 @@ var Player = function(game, x, y){
     this.body.setSize(95, 192, 0, 32);
     this.body.linearDamping = 1;
     this.body.collideWorldBounds = true;
+
+    this.cursors = game.input.keyboard.createCursorKeys();
 }
 
 
@@ -19,7 +21,7 @@ Player.prototype.constructor = Player;
 Player.prototype.update = function() {
 
     this.body.velocity.x = 0;
-    if (cursors.up.isDown)
+    if (this.cursors.up.isDown)
     {
         if (this.body.onFloor())
         {
@@ -27,7 +29,7 @@ Player.prototype.update = function() {
         }
     }
 
-    if (cursors.left.isDown)
+    if (this.cursors.left.isDown)
     {
         this.body.velocity.x = -250;
         this.animations.play('walk');
@@ -36,7 +38,7 @@ Player.prototype.update = function() {
             this.scale.x *= -1;
         }
     }
-    else if (cursors.right.isDown)
+    else if (this.cursors.right.isDown)
     {
         this.body.velocity.x = 250;
         this.animations.play('walk');

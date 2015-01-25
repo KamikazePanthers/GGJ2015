@@ -36,7 +36,6 @@ module.exports = function(game) {
     enemy = new EnemyChase(game, 600, 400, player);
     game.add.existing(enemy);
 
-    cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(player);
   };
 

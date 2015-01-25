@@ -51,9 +51,7 @@ module.exports = function(game) {
     spiders.add(spider2);
     spiders.add(spider3);
 
-    cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(player);
-
   };
 
   level4.update = function () {
