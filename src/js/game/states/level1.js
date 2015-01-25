@@ -1,3 +1,5 @@
+var Countdown = require('../modules/timer')
+
 module.exports = function(game) {
 
   var level1 = {};
@@ -43,9 +45,17 @@ module.exports = function(game) {
 
     cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(player);
+
+    timer = new Countdown(game);
+    game.add.existing(timer);
   };
 
   level1.update = function () {
+
+    if (timer.timeOver) {
+        level = game.state.start('game');
+    }
+
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, coins, this.collect, null, this);
 

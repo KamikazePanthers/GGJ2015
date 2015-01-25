@@ -21,7 +21,7 @@ Countdown.prototype.count = function() {
     this.setText(this.seconds);
 }
 
-Countdown.prototype.isFinished = function() {
+Countdown.prototype.update = function() {
     if (this.seconds < 1) {
         this.timeOver = true;
     }
