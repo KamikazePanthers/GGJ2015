@@ -33,7 +33,7 @@ module.exports = function(game) {
     player = new Player(game, 0, game.world.height - 256);
     game.add.existing(player);
 
-    enemy = new EnemyChase(game, 600, 400, player);
+    enemy = new EnemyChase(game, game.width - 192, game.height - 256, player);
     game.add.existing(enemy);
 
     game.camera.follow(player);
