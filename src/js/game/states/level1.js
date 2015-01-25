@@ -40,25 +40,22 @@ module.exports = function(game) {
   };
 
   level1.update = function () {
-
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, coins, this.collect, null, this);
-
-    if(coins_count == 0)
+    if(counter.countFinished())
     {
         this.nextLevel();
     }
-  }
+  };
 
   level1.collect = function(player, coin){
     coin.kill();
-    coins_count--;
-    legend.setText(coins_count);
-  }
+    counter.count();
+  };
 
   level1.nextLevel = function(){
     game.state.start('level2');
-  }
+  };
 
   return level1;
 };

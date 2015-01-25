@@ -36,7 +36,6 @@ module.exports = function(game) {
     time = new Countdown(game, 30);
     game.add.existing(time);
 
-    console.log(blockedLayer);
     spiders = game.add.group()
     spiders.enableBody = true;
     spiders.enableGravity = false;
@@ -58,11 +57,11 @@ module.exports = function(game) {
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, spiders, this.endGame, null, this);
     if (time.timeOver) {
-        this.endGame();
+        this.gameOver();
     }
   };
 
-  level4.endGame = function(player, spiders) {
+  level4.gameOver = function(player, spiders) {
     game.state.start("gameover");
   }
 

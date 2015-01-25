@@ -7,12 +7,12 @@ var ItemCounter = function(game, counter) {
 ItemCounter.prototype = Object.create(Phaser.Text.prototype);
 ItemCounter.prototype.constructor = ItemCounter;
 
-ItemCounter.prototype.count = function() {
-    // this.seconds -= 1;
-    // this.setText(this.seconds);
+ItemCounter.prototype.countFinished = function() {
+	return this.counter <= 0;
 }
 
-ItemCounter.prototype.update = function() {
+ItemCounter.prototype.count = function() {
+    this.counter -= 1;
     this.setText(this.counter);
 }
 

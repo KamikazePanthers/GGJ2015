@@ -1,3 +1,4 @@
+var ItemCounter = require('../modules/counter')
 var EnemyChase  = require('../modules/enemies/chase')
 var Player = require('../modules/player')
 
@@ -30,10 +31,14 @@ module.exports = function(game) {
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
+    coins_count = coins.children.length
+    counter = new ItemCounter(game, coins_count);
+    game.add.existing(counter);
+
     player = new Player(game, 0, game.world.height - 256);
     game.add.existing(player);
 
-    enemy = new EnemyChase(game, game.width - 192, game.height - 256, player);
+    enemy = new EnemyChase(game, 288, game.height - 256, player);
     game.add.existing(enemy);
 
     game.camera.follow(player);
@@ -41,8 +46,27 @@ module.exports = function(game) {
 
   level3.update = function () {
     game.physics.arcade.collide(player, blockedLayer);
+    game.physics.arcade.overlap(player, coins, this.gameOver, null, this);
     game.physics.arcade.collide(enemy, blockedLayer);
-  }
+    game.physics.arcade.overlap(enemy, coins, this.collect, null, this);
+    if(counter.countFinished())
+    {
+        this.nextLevel();
+    }
+  };
+
+  level3.collect = function(player, coin){
+    coin.kill();
+    counter.count();
+  };
+
+  level3.nextLevel = function(){
+    game.state.start('level4');
+  };
+
+  level3.gameOver = function(){
+    game.state.start('gameover');
+  };
 
   return level3;
 };

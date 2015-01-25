@@ -12,7 +12,8 @@ var EnemyChase = function(game, x, y, player, speed, delay) {
     game.physics.arcade.enable([ this ], Phaser.Physics.ARCADE);
 
     this.body.bounce.y = 0.1;
-    this.body.gravity.y = 100;
+    this.body.gravity.y = 0;
+    this.body.setSize(128, 192, 32, 0);
 
     game.time.events.loop(this.delay, this.chase, this);
 

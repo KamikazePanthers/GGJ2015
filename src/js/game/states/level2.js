@@ -51,10 +51,10 @@ module.exports = function(game) {
   level2.update = function () {
     game.physics.arcade.collide(this.player, blockedLayer);
     game.physics.arcade.overlap(this.player, coins, this.collect, null, this);
-    game.physics.arcade.overlap(this.player, door, this.doorCallback, null, this);
+    game.physics.arcade.overlap(this.player, door, this.gameOver, null, this);
 
     // #AhListoQueVillero
-    if ( this.player.body.y == 640 ) {
+    if ( this.player.body.y == 640 - this.player.height) {
         this.gameOver();
     }
     if (timer.timeOver) {
@@ -64,11 +64,9 @@ module.exports = function(game) {
 
   level2.collect = function(player, coin){
     coin.kill();
-    coins_count--;
-    //legend.setText(coins_count);
   };
 
-  level2.doorCallback = function(){
+  level2.nextLevel = function(){
     game.state.start('level3');
   };
 
