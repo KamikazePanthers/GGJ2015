@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="15" height="9" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="tileset" tilewidth="64" tileheight="64">
-  <image source="../src/images/tileset.png" width="960" height="448"/>
+  <image source="../src/images/tileset.png" width="960" height="832"/>
  </tileset>
  <layer name="backgroundLayer0" width="15" height="9">
   <data encoding="csv">
@@ -42,7 +42,7 @@
 77,78,76,77,78,76,77,78,76,77,78,76,77,78,76
 </data>
  </layer>
- <objectgroup name="objectLayer" width="15" height="9" visible="0">
+ <objectgroup name="objectLayer" width="15" height="9">
   <object gid="61" x="832" y="512"/>
   <object gid="61" x="640" y="512"/>
   <object gid="61" x="448" y="512"/>
