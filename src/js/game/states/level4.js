@@ -57,23 +57,8 @@ module.exports = function(game) {
   level4.update = function () {
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, spiders, this.endGame, null, this);
-
-
     if (time.timeOver) {
         this.endGame();
-    }
-
-    player.body.velocity.x = 0;
-    if (cursors.up.isDown) {
-        if (player.body.onFloor()){
-            player.body.velocity.y = -300;
-        }
-    }
-
-    if (cursors.left.isDown) {
-        player.body.velocity.x = -150;
-    } else if (cursors.right.isDown){
-        player.body.velocity.x = 150;
     }
   };
 
