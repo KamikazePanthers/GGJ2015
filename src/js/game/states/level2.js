@@ -28,7 +28,7 @@ module.exports = function(game) {
 
     coins_count = coins.children.length;
 
-    coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
+    coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 5, true);
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
@@ -42,8 +42,6 @@ module.exports = function(game) {
     this.player = null;
     this.player = new Player(game, 120, 500);
     game.add.existing(this.player);
-
-    cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(this.player);
 
     timer = new Countdown(game, 60);

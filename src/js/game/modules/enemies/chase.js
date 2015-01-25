@@ -6,6 +6,9 @@ var EnemyChase = function(game, x, y, player, speed, delay) {
     this.delay = typeof delay !== 'undefined' ?  delay : 500;
 
     Phaser.Sprite.call(this, game, x, y, 'enemychase');
+    this.animations.add('chasing', [0, 1, 2, 3], 5, true, true);
+    this.animations.play('chasing');
+
     game.physics.arcade.enable([ this ], Phaser.Physics.ARCADE);
 
     this.body.bounce.y = 0.1;

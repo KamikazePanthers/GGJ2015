@@ -22,10 +22,9 @@ module.exports = function(game) {
 
     // Enemies
     game.load.image('enemypatrol', 'images/patrol.png#grunt-cache-bust');
-    game.load.image('enemychase', 'images/chase.png#grunt-cache-bust');
     game.load.image('enemyjumper', 'images/jumper.png#grunt-cache-bust');
     game.load.image('enemyspider', 'images/spider.png#grunt-cache-bust');
-
+    game.load.spritesheet('enemychase', 'images/ghost.png#grunt-cache-bust', 192, 192);
 
   };
 

@@ -26,7 +26,7 @@ module.exports = function(game) {
     coins.enableBody = true;
     map.createFromObjects('objectLayer', 61, 'coin', 0, true, false, coins);
 
-    coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 10, true);
+    coins.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3], 5, true);
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
@@ -36,7 +36,6 @@ module.exports = function(game) {
     enemy = new EnemyChase(game, 600, 400, player);
     game.add.existing(enemy);
 
-    cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(player);
   };
 
