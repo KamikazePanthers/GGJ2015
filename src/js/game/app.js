@@ -10,7 +10,7 @@ var Phaser = require('Phaser'),
         level1: require('./states/level1.js'),
         level2: require('./states/level2.js'),
         level3: require('./states/level3.js'),
-        //level4: require('./states/level4.js'),
+        level4: require('./states/level4.js'),
     },
     game = new Phaser.Game(properties.size.x, properties.size.y, Phaser.CANVAS, 'game');
 

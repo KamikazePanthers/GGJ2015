@@ -7,14 +7,10 @@ var Countdown = function(game, seconds) {
     this.game.time.events.loop(Phaser.Timer.SECOND, this.count, this);
     this.fixedToCamera = true;
 
-    // this.fixedToCamera = true;
-
 }
-
 
 Countdown.prototype = Object.create(Phaser.Text.prototype);
 Countdown.prototype.constructor = Countdown;
-
 
 Countdown.prototype.count = function() {
     this.seconds -= 1;
@@ -26,6 +22,5 @@ Countdown.prototype.update = function() {
         this.timeOver = true;
     }
 }
-
 
 module.exports = Countdown;
