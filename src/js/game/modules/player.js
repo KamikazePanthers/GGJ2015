@@ -58,7 +58,5 @@ Player.prototype.update = function() {
 
 };
 
-Player.prototype.chase = function() {
-};
 
 module.exports = Player;
