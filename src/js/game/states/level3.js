@@ -1,3 +1,5 @@
+var EnemyChase  = require('../modules/enemies/chase')
+
 module.exports = function(game) {
 
   var level3 = {};
@@ -33,12 +35,16 @@ module.exports = function(game) {
     p.body.linearDamping = 1;
     p.body.collideWorldBounds = true;
 
+    enemy = new EnemyChase(game, 600, 400, p);
+    game.add.existing(enemy);
+
     cursors = game.input.keyboard.createCursorKeys();
     game.camera.follow(p);
   };
 
   level3.update = function () {
     game.physics.arcade.collide(p, blockedLayer);
+    game.physics.arcade.collide(enemy, blockedLayer);
 
     p.body.velocity.x = 0;
     if (cursors.up.isDown)
