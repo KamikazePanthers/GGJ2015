@@ -7,7 +7,7 @@ var Player = function(game, x, y){
     this.direction = 'right';
 
 	game.physics.arcade.enable([ this ], Phaser.Physics.ARCADE);
-    this.body.setSize(128, 192, 0, 32);
+    this.body.setSize(95, 192, 0, 32);
     this.body.linearDamping = 1;
     this.body.collideWorldBounds = true;
 }
