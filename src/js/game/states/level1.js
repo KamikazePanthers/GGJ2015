@@ -1,4 +1,5 @@
 var Countdown = require('../modules/timer')
+var Player = require('../modules/player')
 
 module.exports = function(game) {
 
@@ -6,7 +7,7 @@ module.exports = function(game) {
 
   level1.create = function () {
 
-    game.physics.arcade.gravity.y = 250;
+    game.physics.arcade.gravity.y = 400;
 
     map = game.add.tilemap('level1');
     map.addTilesetImage('tileset', 'tiles_png');
@@ -29,11 +30,8 @@ module.exports = function(game) {
 
     coins_count = coins.children.length;
 
-    player = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
-    game.physics.enable(player);
-    player.body.bounce.y = 0.2;
-    player.body.linearDamping = 1;
-    player.body.collideWorldBounds = true;
+    player = new Player(game, 0, game.world.height - 192)
+    game.add.existing(player);
 
     var text = "Level 1";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
@@ -59,27 +57,9 @@ module.exports = function(game) {
     game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.overlap(player, coins, this.collect, null, this);
 
-    player.body.velocity.x = 0;
-    if (cursors.up.isDown)
-    {
-        if (player.body.onFloor())
-        {
-            player.body.velocity.y = -300;
-        }
-    }
-
-    if (cursors.left.isDown)
-    {
-        player.body.velocity.x = -150;
-    }
-    else if (cursors.right.isDown)
-    {
-        player.body.velocity.x = 150;
-    }
-
     if(coins_count == 0)
     {
-        level = game.state.start('game');
+        level = game.state.start('level2');
     }
   }
 

@@ -19,7 +19,7 @@ module.exports = function(game) {
     game.load.tilemap('level4', 'maps/level4.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles_png', 'images/tileset.png#grunt-cache-bust');
 
-    game.load.image('player', 'images/player.png#grunt-cache-bust');
+    game.load.spritesheet('player', 'images/player.png#grunt-cache-bust', 192, 256);
     game.load.spritesheet('coin', 'images/coin.png#grunt-cache-bust', 64, 64);
 
     // Enemies
