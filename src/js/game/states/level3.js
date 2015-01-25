@@ -1,4 +1,5 @@
 var EnemyChase  = require('../modules/enemies/chase')
+var Player = require('../modules/player')
 
 module.exports = function(game) {
 
@@ -8,7 +9,7 @@ module.exports = function(game) {
     var text = "Level 3";
     var style = { font: "30px Arial", fill: "#FFF", align: "center" };
     var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
-    game.physics.arcade.gravity.y = 250;
+    game.physics.arcade.gravity.y = 400;
 
     map = game.add.tilemap('level3');
     map.addTilesetImage('tileset', 'tiles_png');
@@ -29,40 +30,19 @@ module.exports = function(game) {
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
-    p = game.add.sprite(0, game.world.height - 256, 'player'); // <--- mas negrada
-    game.physics.enable(p);
-    p.body.bounce.y = 0.2;
-    p.body.linearDamping = 1;
-    p.body.collideWorldBounds = true;
+    player = new Player(game, 0, game.world.height - 256);
+    game.add.existing(player);
 
-    enemy = new EnemyChase(game, 600, 400, p);
+    enemy = new EnemyChase(game, 600, 400, player);
     game.add.existing(enemy);
 
     cursors = game.input.keyboard.createCursorKeys();
-    game.camera.follow(p);
+    game.camera.follow(player);
   };
 
   level3.update = function () {
-    game.physics.arcade.collide(p, blockedLayer);
+    game.physics.arcade.collide(player, blockedLayer);
     game.physics.arcade.collide(enemy, blockedLayer);
-
-    p.body.velocity.x = 0;
-    if (cursors.up.isDown)
-    {
-        if (p.body.onFloor())
-        {
-            p.body.velocity.y = -300;
-        }
-    }
-
-    if (cursors.left.isDown)
-    {
-        p.body.velocity.x = -150;
-    }
-    else if (cursors.right.isDown)
-    {
-        p.body.velocity.x = 150;
-    }
   }
 
   return level3;
