@@ -59,7 +59,7 @@ module.exports = function(game) {
 
     if(coins_count == 0)
     {
-        level = game.state.start('level2');
+        this.nextLevel();
     }
   }
 
@@ -67,6 +67,10 @@ module.exports = function(game) {
     coin.kill();
     coins_count--;
     legend.setText(coins_count);
+  }
+
+  level1.nextLevel = function(){
+    game.state.start('level2');
   }
 
   return level1;
