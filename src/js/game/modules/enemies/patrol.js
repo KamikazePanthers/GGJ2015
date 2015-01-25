@@ -1,13 +1,13 @@
-var EnemyPatrol = function (game, x, y) {
+var EnemyPatrol = function (game, x, y, speed, delay) {
     this.game     = game;
-    this.speed    = 5;
-    this.isMoving = false;
+    this.speed    = typeof speed !== 'undefined' ?  speed : 150;
+    this.delay    = typeof delay !== 'undefined' ?  delay : 3;
 
     Phaser.Sprite.call(this, this.game, x, y, 'enemypatrol');
     game.physics.arcade.enable([ this ], Phaser.Physics.ARCADE);
 
-    this.body.velocity.x = 150;
-    this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.patrol, this);
+    this.body.velocity.x = this.speed;
+    this.game.time.events.loop(Phaser.Timer.SECOND * this.delay, this.patrol, this);
 };
 
 EnemyPatrol.prototype = Object.create(Phaser.Sprite.prototype);
