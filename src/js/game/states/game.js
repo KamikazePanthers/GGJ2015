@@ -12,7 +12,7 @@ module.exports = function(game) {
 
  gameState.update = function () {
     if (enter.isDown) {
-        level = game.state.start('leveltest');
+        level = game.state.start('level1');
     }
  };
 
