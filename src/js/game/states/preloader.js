@@ -10,9 +10,6 @@ module.exports = function(game) {
     // Here we need to add all the media
     game.load.image('logo', 'images/phaser.png#grunt-cache-bust');
 
-    game.load.tilemap('tile_map', 'maps/test_map.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('tiles', 'images/tiles.png');
-
     game.load.tilemap('level1', 'maps/level1.json', null, Phaser.Tilemap.TILED_JSON);
     // game.load.tilemap('level2', 'maps/level2.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.tilemap('level3', 'maps/level3.json', null, Phaser.Tilemap.TILED_JSON);
