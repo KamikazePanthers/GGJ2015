@@ -3,9 +3,7 @@ module.exports = function(game) {
   var level1 = {};
 
   level1.create = function () {
-    var text = "Level 1";
-    var style = { font: "30px Arial", fill: "#FFF", align: "center" };
-    var loading = game.add.text(game.world.centerX, game.world.centerY, text, style);
+
     game.physics.arcade.gravity.y = 250;
 
     map = game.add.tilemap('level1');
@@ -15,7 +13,7 @@ module.exports = function(game) {
     backgroundlayer1 = map.createLayer('backgroundLayer1');
     blockedLayer = map.createLayer('blockedLayer');
 
-    map.setCollisionBetween(0, 20, true, 'blockedLayer');
+    map.setCollisionBetween(1, 20, true, 'blockedLayer');
 
     backgroundlayer0.resizeWorld();
 
@@ -27,36 +25,58 @@ module.exports = function(game) {
     coins.callAll('animations.play', 'animations', 'spin');
     coins.setAll('body.allowGravity', false, false, false, 0, true);
 
-    p = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
-    game.physics.enable(p);
-    p.body.bounce.y = 0.2;
-    p.body.linearDamping = 1;
-    p.body.collideWorldBounds = true;
+    coins_count = coins.children.length;
+
+    player = game.add.sprite(0, game.world.height - 192, 'player'); // <--- negrada
+    game.physics.enable(player);
+    player.body.bounce.y = 0.2;
+    player.body.linearDamping = 1;
+    player.body.collideWorldBounds = true;
+
+    var text = "Level 1";
+    var style = { font: "30px Arial", fill: "#FFF", align: "center" };
+    legend = new Phaser.Text(game, 0, 0, text, style);
+    legend.x = game.width - legend.width - 10;
+    legend.y = game.height - legend.height - 10;
+    legend.fixedToCamera = true;
+    game.add.existing(legend);
 
     cursors = game.input.keyboard.createCursorKeys();
-    game.camera.follow(p);
+    game.camera.follow(player);
   };
 
   level1.update = function () {
-    game.physics.arcade.collide(p, blockedLayer);
+    game.physics.arcade.collide(player, blockedLayer);
+    game.physics.arcade.overlap(player, coins, this.collect, null, this);
 
-    p.body.velocity.x = 0;
+    player.body.velocity.x = 0;
     if (cursors.up.isDown)
     {
-        if (p.body.onFloor())
+        if (player.body.onFloor())
         {
-            p.body.velocity.y = -300;
+            player.body.velocity.y = -300;
         }
     }
 
     if (cursors.left.isDown)
     {
-        p.body.velocity.x = -150;
+        player.body.velocity.x = -150;
     }
     else if (cursors.right.isDown)
     {
-        p.body.velocity.x = 150;
+        player.body.velocity.x = 150;
     }
+
+    if(coins_count == 0)
+    {
+        level = game.state.start('game');
+    }
+  }
+
+  level1.collect = function(player, coin){
+    coin.kill();
+    coins_count--;
+    legend.setText(coins_count);
   }
 
   return level1;
